@@ -1,0 +1,45 @@
+<section class="skrollable u-align-center u-clearfix u-image u-parallax u-section-2" id="carousel_d79f" data-image-width="1565" data-image-height="800">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <h1 class="u-align-center u-text u-text-default u-text-1">Esqueci Minha Senha - Vip's 👑</h1>
+      <p class="u-align-center u-small-text u-text u-text-default u-text-variant u-text-2">Iremos enviar um email de recuperação para sua conta.&nbsp;</p>
+      <div class="u-form u-form-1">
+        <form class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" >
+          <div class="u-form-group u-form-name u-label-none" id="result"></div>
+          <div class="u-form-group u-form-name u-label-none">
+            <label for="name-3b9a" class="u-label">Email</label>
+            <input type="email" placeholder="Insira seu Email" id="email" name="email" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1" required="">
+          </div>
+          <div class="u-align-center u-form-group u-form-submit">
+            <script type="text/javascript">
+              $('#esqueceuSenha').click(function(){
+                $("#email").prop("disabled", true);
+                $("#email").css("cursor", "not-allowed");
+                $("#esqueceuSenha").prop("disabled", true);
+                $("#esqueceuSenha").css("cursor", "not-allowed");
+                $.ajax({
+                  url: 'api/email.php',
+                  method: 'post',
+                  data: { esqueceu: $('#email').val() },
+                  success: function(data){
+                    $('#result').html(data);
+                  },
+                  beforeSend: function(){
+                    $('#esqueceuSenha').css({display:"none"});
+                    $('#loading').css({display:"block"});
+                  },
+                  complete: function(){
+                    $('#loading').css({display:"none"});
+                  }
+                });
+              });
+            </script>
+            <a href="#" class="u-border-2 u-border-black u-border-hover-palette-4-base u-btn u-btn-rectangle u-btn-submit u-button-style u-hover-black u-text-hover-white u-white u-btn-1" id="esqueceuSenha">ENVIAR</a>
+            <div class="u-form-group u-align-center" style="display: none;"  id="loading"><img src="images/XVo6.gif" style="width: 50px;"></div>
+          </div>
+        </form>
+      </div>
+      <p class="u-small-text u-text u-text-default u-text-variant u-text-4">
+        <a class="animated u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-2-dark-1 u-btn-2" data-href="http://localhost/lineups/Login.html">VOLTAR PARA O LOGIN-&gt;</a>
+      </p>
+    </div>
+  </section>
